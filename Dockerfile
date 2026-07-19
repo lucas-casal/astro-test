@@ -14,6 +14,4 @@ CMD ["bun", "run", "dev", "--host", "0.0.0.0"]
 FROM base AS build
 RUN bun run build
 
-FROM httpd:2.4-alpine AS production
-EXPOSE 80
-CMD ["httpd-foreground"]
+CMD ["echo", "Build completed successfully!"]
