@@ -1,15 +1,16 @@
-# syntax=docker/dockerfile:1
+# 1. Define the base environment with Bun installed
 FROM oven/bun:1.1-alpine AS base
-WORKDIR /src
+WORKDIR /app
+
+# 2. Copy lockfiles and install dependencies
 COPY package.json bun.lockb* ./
-RUN bun add
+RUN bun install
+
+# 3. Copy the rest of your Astro source code
 COPY . .
 
-FROM base AS development
-EXPOSE 4321
-CMD ["bun", "run", "dev", "--host", "0.0.0.0"]
-
-FROM base AS build
+# 4. Run the build command directly on the base image
 RUN bun run build
 
+# 5. Keeps the container alive just long enough to copy files to your volume
 CMD ["echo", "Build completed successfully!"]
