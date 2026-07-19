@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  astro-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: astro_bun_dev
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/front
+      - /front/node_modules
+    environment:
+      - NODE_ENV=development
