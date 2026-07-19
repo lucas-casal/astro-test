@@ -5,8 +5,6 @@ COPY package.json bun.lockb* ./
 RUN bun add
 COPY . .
 
-RUN pip install -r requirements.txt  # Installs the Python dependencies
-COPY . .  # Copies the current directory `.` in the project to the workdir `.` in the image
 FROM base AS development
 EXPOSE 4321
 CMD ["bun", "run", "dev", "--host", "0.0.0.0"]
